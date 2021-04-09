@@ -8,12 +8,12 @@ import { sgemm } from "./src/matrix/sgemm/mod.ts";
 
 const matrixA = new Matrix(
   [2, 2],
-  new Float32Array([1, 1, 0, 1]),
+  [1, 1, 0, 1],
 );
 
 const matrixB = new Matrix(
   [2, 2],
-  new Float32Array([0, 1, 1, 0]),
+  [0, 1, 1, 0],
 );
 
 /**
@@ -21,5 +21,5 @@ const matrixB = new Matrix(
  */
 const result = await sgemm({ matrixA, matrixB });
 
-console.log(result); // Float32Array(6) [2, 2, 1, 1, 1, 0]
+console.log(result); // Matrix(6) [2, 2, 1, 1, 1, 0]
 ```

@@ -3,7 +3,7 @@ export type DenoCLMatrixColumns = number;
 export type DenoCLMatrixShape = [DenoCLMatrixRows, DenoCLMatrixColumns];
 
 export class Matrix extends Float32Array {
-  constructor(public shape: DenoCLMatrixShape, public data: Float32Array) {
+  constructor(public shape: DenoCLMatrixShape, public data: number[] | Float32Array) {
     super([...shape, ...data]);
   }
 
