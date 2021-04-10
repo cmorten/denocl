@@ -22,10 +22,10 @@ var<storage> matrixA: [[access(read)]] Matrix;
 var<storage> matrixB: [[access(read)]] Matrix;
 
 [[group(0), binding(2)]]
-var<storage> meta: [[access(read)]] Meta;
+var<storage> matrixC: [[access(read_write)]] Matrix;
 
 [[group(0), binding(3)]]
-var<storage> matrixC: [[access(read_write)]] Matrix;
+var<storage> meta: [[access(read)]] Meta;
 
 [[stage(compute), workgroup_size(1)]]
 fn main() {

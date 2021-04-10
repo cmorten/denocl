@@ -13,29 +13,16 @@ import { submit } from "../queue/submit.ts";
  * @returns {Promise<GPUBuffer>} A copy of the source buffer
  */
 export async function copy(
-  { src, size, commandEncoder }: {
-    src: GPUBuffer;
-    size: number;
-    commandEncoder?: GPUCommandEncoder;
-  },
+  { src, size }: { src: GPUBuffer; size: number },
 ): Promise<GPUBuffer> {
   const dest = await create({
     size,
     usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
   });
 
-  const copyEncoder = commandEncoder ?? await createCommandEncoder();
-  copyEncoder.copyBufferToBuffer(
-    src,
-    0,
-    dest,
-    0,
-    size,
-  );
-
-  const copyCommands = copyEncoder.finish();
-
-  submit([copyCommands]);
+  const commandEncoder = await createCommandEncoder();
+  commandEncoder.copyBufferToBuffer(src, 0, dest, 0, size);
+  submit([commandEncoder.finish()]);
 
   return dest;
 }

@@ -1,15 +1,18 @@
 import { request } from "../../device/request.ts";
 import { error } from "../../error.ts";
 
-const source = await Deno.readTextFile(
-  new URL("./shader.wgsl", import.meta.url),
-);
+let module: GPUShaderModule;
 
-let shaderModule: GPUShaderModule;
-
+/**
+ * shader
+ * 
+ * Creates the sgemm shader module.
+ * 
+ * @returns {Promise<GPUShaderModule>} The sgemm shader module.
+ */
 export async function shader(): Promise<GPUShaderModule> {
-  if (shaderModule) {
-    return shaderModule;
+  if (module) {
+    return module;
   }
 
   const device = await request();
@@ -21,7 +24,9 @@ export async function shader(): Promise<GPUShaderModule> {
     });
   }
 
-  const module = device.createShaderModule({ code: await source });
-
-  return module;
+  return module = device.createShaderModule({
+    code: await Deno.readTextFile(
+      new URL("./shader.wgsl", import.meta.url),
+    ),
+  });
 }
