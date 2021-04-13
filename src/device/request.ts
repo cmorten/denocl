@@ -1,4 +1,4 @@
-let device: GPUDevice | null;
+let device: GPUDevice | null | undefined;
 
 export interface DenoCLDeviceRequestOptions {
   adaptor?: {
@@ -39,4 +39,5 @@ export async function request(
  */
 export function destroy(): void {
   device?.destroy();
+  device = undefined;
 }

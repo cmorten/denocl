@@ -46,8 +46,8 @@ fn main() {
           break;
         }
 
-        var a: i32 = i + row * matrixA.size.x;
-        var b: i32 = col + i * matrixB.size.x;
+        var a: i32 = row + i * matrixA.size.x;
+        var b: i32 = i + col * matrixB.size.x;
         sum = sum + matrixA.numbers[a] * matrixB.numbers[b];
         i = i + 1;
       }
@@ -62,7 +62,7 @@ fn main() {
           break;
         }
 
-        var a: i32 = i + row * matrixA.size.x;
+        var a: i32 = row + i * matrixA.size.x;
         var b: i32 = col + i * matrixB.size.y;
         sum = sum + matrixA.numbers[a] * matrixB.numbers[b];
         i = i + 1;
@@ -71,9 +71,9 @@ fn main() {
       index = col + row * matrixB.size.y;
     }
   } else {
-     if (meta.transB > 0) {
-       // C = alpha * A * B^T + beta * C
-       matrixC.size = vec2<f32>(matrixA.size.x, matrixB.size.x);
+    if (meta.transB > 0) {
+      // C = alpha * A * B^T + beta * C
+      matrixC.size = vec2<f32>(matrixA.size.x, matrixB.size.x);
 
       loop {
         if (i >= matrixA.size.y) { 
@@ -81,7 +81,7 @@ fn main() {
         }
 
         var a: i32 = i + row * matrixA.size.y;
-        var b: i32 = col + i * matrixB.size.x;
+        var b: i32 = i + col * matrixB.size.x;
         sum = sum + matrixA.numbers[a] * matrixB.numbers[b];
         i = i + 1;
       }

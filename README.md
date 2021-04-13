@@ -22,4 +22,5 @@ const matrixB = new Matrix(
 const result = await sgemm({ matrixA, matrixB });
 
 console.log(result); // Matrix(6) [2, 2, 1, 1, 1, 0]
+console.log(result.to2dArray()); // [[1, 1], [1, 0]]
 ```
