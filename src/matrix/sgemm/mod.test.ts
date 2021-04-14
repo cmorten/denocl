@@ -117,7 +117,7 @@ describe("sgemm", () => {
         matrixA: squareMatrixOne,
         matrixB: squareMatrixOne,
         matrixC: squareMatrixOne,
-        beta: 0.5
+        beta: 0.5,
       }),
     )
       .toEqual(
